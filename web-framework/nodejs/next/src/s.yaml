@@ -9,7 +9,7 @@ resources:
     component: fc3
     actions:
       pre-deploy:
-        - run: npm install --production --registry=https://registry.npmmirror.com
+        - run: npm install --production
           path: ./code
         - run: npm run build
           path: ./code
@@ -23,10 +23,9 @@ resources:
       runtime: custom
       timeout: 60
       layers:
-        - acs:fc:${vars.region}:official:layers/Nodejs16/versions/1
+        - acs:fc:${vars.region}:official:layers/Nodejs20/versions/1
       environmentVariables:
-        PATH: >-
-          /opt/nodejs16/bin:/usr/local/bin/apache-maven/bin:/usr/local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/local/ruby/bin
+        PATH: /opt/nodejs20/bin:/bin
       customRuntimeConfig:
         command:
           - node
